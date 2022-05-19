@@ -23,9 +23,12 @@ btn = html.Button('Enter', id=pfx('enter'), disabled=True)
 @callback(btn.output.disabled, user_name.input.value, password.input.value)
 def _cb_enter(user_name, password):
     return not db_validate_user(user_name, password)
+
 ```
+
 **isTriggered()** Returns true if the given dash component was the reason for the enclosing callback
 being triggered
+
 ```
   app = dash.Dash(__name__)
 

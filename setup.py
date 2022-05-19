@@ -1,19 +1,13 @@
-import io
 import os
-import re
 
 from setuptools import find_packages
 from setuptools import setup
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-def read(filename):
-    """Read file"""
-    filename = os.path.join(os.path.dirname(__file__), filename)
-    text_type = type(u"")
-    with io.open(filename, mode="r", encoding='utf-8') as fd:
-        return re.sub(text_type(r':[a-z]+:`~?(.*?)`'), text_type(r'``\1``'), fd.read())
-
+def _get_long_description():
+    with open(os.path.join(HERE, "README.md")) as f:
+        return f.read()
 
 def _get_version():
     """ Get version by parsing _version programmatically """
@@ -46,14 +40,15 @@ def _get_dependencies():
 setup(
     name="dash-prefix",
     version=_get_version(),
-    url="http://localhost:3000/dad/dash-prefix",
+    url="https://github.com/stevej2608/dash-prefix",
     license='MIT',
 
     author="Steve Jones",
     author_email="jonesst608@gmail.com",
 
     description="Dash library for managing component IDs",
-    long_description=read("README.md"),
+    long_description=_get_long_description(),
+    long_description_content_type='text/markdown',
 
     packages=find_packages(exclude=('tests',)),
     include_package_data=True,
