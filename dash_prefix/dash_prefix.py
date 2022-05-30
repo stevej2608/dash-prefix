@@ -44,7 +44,7 @@ def trigger_index(idx_field='idx') -> Union[int, None]:
         Union[int, None]: Returns the index or None
     """
     ctx = callback_context
-    if ctx.triggered:
+    if ctx.triggered and idx_field in ctx.triggered_id:
         triggered_idx = ctx.triggered_id[idx_field]
         for index, input in enumerate(ctx.inputs_list[0]):
             if triggered_idx == input['id'][idx_field]:
