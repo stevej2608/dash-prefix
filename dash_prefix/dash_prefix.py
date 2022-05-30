@@ -166,7 +166,7 @@ def prefix(pfx:str = None) -> Callable[[str], str]:
     """
 
     def _prefix(pfx, id):
-        id = f'{pfx}_{id}' if id else f'{pfx}'
+        id = f'{pfx}_{id}' if id is not None  else f'{pfx}'
         return id.lower()
 
     if pfx:
