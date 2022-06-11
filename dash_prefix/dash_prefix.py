@@ -266,8 +266,8 @@ def copy_factory(component, composite):
     to be referenced in Dash callbacks.
 
     Arguments:
-        src {obj} -- The source Dash component
-        dest {obj} -- The destination Dash component
+        component {obj} -- The source Dash component
+        composite {obj} -- The destination Dash composite
 
     Returns:
         [Obj] -- The destination component
@@ -310,12 +310,12 @@ def _css_id(self) -> str:
 
     """
 
-    if isinstance(self.id, dict):
+    id = self.id if not hasattr(self, 'input') else self.input.id.id
+
+    if isinstance(id, dict):
         id = json.dumps(self.id, sort_keys=True, separators=(",", ":"))
         for c in r'{}",:':
             id = id.replace(c, f"\\{c}")
-    else:
-        id = self.id
 
     return '#' + id
 
